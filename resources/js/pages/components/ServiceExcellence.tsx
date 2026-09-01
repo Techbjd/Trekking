@@ -1,5 +1,5 @@
-import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
 
 const awards = [
   { src: '/award1.png', left: 'left-[267px]' },

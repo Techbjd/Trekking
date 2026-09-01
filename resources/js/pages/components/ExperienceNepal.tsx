@@ -1,5 +1,7 @@
-import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+import React, { useRef } from 'react';
+
 
 const ExperienceNepal: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);

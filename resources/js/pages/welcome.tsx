@@ -20,7 +20,7 @@ import YourTrustedPartner from './components/YourTrustedPartner';
 
 const Welcome: React.FC = () => {
     return (
-        <div className='max-w-360 mx-auto'>
+        <div className='w-full max-w-360 mx-auto overflow-x-hidden'>
             <Header />
             <Hero />
             <ExperienceNepal />

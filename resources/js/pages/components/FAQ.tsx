@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import React, { useState } from 'react';
 
 const faqs = [
   { question: '1. Why choose Discovery World Trekking?', answer: 'Discovery World Trekking is a leading trekking company in Nepal.' },

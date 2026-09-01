@@ -72,6 +72,7 @@ const StarIcon = ({ color, type }: { color: string; type: string }) => {
   if (type === 'circle') {
     return <div className="rounded-full w-3.5 h-3.5 m-1" style={{ background: color }} />;
   }
+
   if (type === 'star-filled') {
     return (
       <div className="flex items-center justify-center rounded w-5 h-5" style={{ background: color }}>
@@ -79,6 +80,7 @@ const StarIcon = ({ color, type }: { color: string; type: string }) => {
       </div>
     );
   }
+
   return <svg width="22" height="22" viewBox="0 0 24 24" fill={color}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>;
 };
 

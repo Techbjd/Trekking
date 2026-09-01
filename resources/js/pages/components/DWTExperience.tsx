@@ -1,5 +1,5 @@
-import React from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import React from 'react';
 
 const cards = [
   {
