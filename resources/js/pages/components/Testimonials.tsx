@@ -72,6 +72,7 @@ const StarIcon = ({ color, type }: { color: string; type: string }) => {
   if (type === 'circle') {
     return <div className="rounded-full w-3.5 h-3.5 m-1" style={{ background: color }} />;
   }
+
   if (type === 'star-filled') {
     return (
       <div className="flex items-center justify-center rounded w-5 h-5" style={{ background: color }}>
@@ -79,6 +80,7 @@ const StarIcon = ({ color, type }: { color: string; type: string }) => {
       </div>
     );
   }
+
   return <svg width="22" height="22" viewBox="0 0 24 24" fill={color}><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>;
 };
 
@@ -87,23 +89,23 @@ const Testimonials: React.FC = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         {/* Happy Trekkers */}
-        <div className="flex items-center justify-center gap-6 mb-12">
+        <div className="flex flex-col items-center max-[507px]:items-center max-[507px]:text-center sm:flex-row sm:items-center sm:justify-center gap-4 sm:gap-6 mb-12">
           <div className="flex">
             {[1, 2, 3, 4, 5, 6, 7].map((num) => (
               <div
                 key={num}
-                className="w-15 h-15 rounded-full overflow-hidden border-[3px] border-white shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
-                style={{ marginLeft: num === 1 ? 0 : -20, zIndex: 7 - num }}
+                className="w-10 h-10 md:w-12 md:h-12 xl:w-15 xl:h-15 rounded-full overflow-hidden border-[3px] border-white shadow-[0_2px_4px_rgba(0,0,0,0.1)] -ml-2.5 md:-ml-3 xl:-ml-5 first:ml-0"
+                style={{ zIndex: 7 - num }}
               >
                 <img src="/Ellipse 26.png" alt={`Trekker ${num}`} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
-          <div>
-            <h2 className="font-['DM_Sans'] font-bold text-[20px] leading-6.5 text-[#4594B3] w-65.25 m-0">
+          <div className="max-[507px]:text-center">
+            <h2 className="font-['DM_Sans'] font-bold text-[20px] leading-6.5 text-[#4594B3] m-0">
               30,000 + Happy Trekkers
             </h2>
-            <p className="font-['DM_Sans'] font-medium text-[14px] leading-4.5 text-[#666] w-60.75 m-0">
+            <p className="font-['DM_Sans'] font-medium text-[14px] leading-4.5 text-[#666] m-0">
               Explorations that last a lifetime.
             </p>
           </div>

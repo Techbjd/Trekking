@@ -1,6 +1,9 @@
-import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useRef } from 'react';
 
 const ExperienceNepal: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   const treks = [
     {
       id: 1,
@@ -22,44 +25,98 @@ const ExperienceNepal: React.FC = () => {
     },
   ];
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = scrollRef.current.clientWidth;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   return (
-    <section className="py-16 bg-gray-100 relative pt-12 ">
-      <div className="container mx-auto px-4 text-center ">
-        <h2 className="font-['DM_Sans'] font-semibold text-[36px] leading-11.75 text-black">
+    <section className="py-12 md:py-16 bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
+        <h2 className="font-['DM_Sans'] font-semibold text-2xl md:text-[36px] leading-tight md:leading-11.75 text-black">
           Experience Nepal
         </h2>
 
-        <p className="mx-auto mt-4 max-w-2xl font-['DM_Sans'] font-light text-[14px] leading-4.5 text-black">
+        <p className="mx-auto mt-4 max-w-2xl font-['DM_Sans'] font-light text-sm md:text-[14px] leading-relaxed md:leading-4.5 text-black">
           These treks have won the hearts of many trekkers. We are sure you will appreciate
           these adventurous hikes, including treks to Mount. Everest - the highest mountain on earth.
         </p>
 
-        <div className="relative mt-12">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center">
-              {treks.map((trek) => (
-                <div key={trek.id} className="bg-white rounded-[13px] shadow-md overflow-hidden">
-                  <div className="relative">
-                    <img src={trek.image} alt={trek.name} className="w-full h-86.75 object-fit rounded-t-[13px]" loading="eager" decoding="async" />
-                    {/* Best Seller badge
-                    <span className="absolute top-4 right-4 bg-[#FF6B35] text-white text-xs font-semibold px-2 py-1 rounded">Best Seller</span>
-                     */}
-                    {/* Price tag */}
-                    {/* <div className="absolute bottom-4 right-4 bg-[#4594B3] text-white text-sm font-medium px-3 py-1 rounded-l">
-                      US$ {trek.price}
-                    </div> */}
-                  </div>
-                  <div className="p-4 text-center">
-                    <h3 className="text-[24px] font-semibold text-[#5E5858] mb-1">{trek.name} - {trek.days} Days</h3>
-                    <div className="flex items-center justify-center gap-1 text-[#FACC15]">
-                      <span>★</span>
-                      <span className="text-white text-sm font-medium">{trek.rating} ({trek.reviews} reviews)</span>
-                    </div>
+        <div className="relative mt-8 md:mt-12">
+          {/* Arrow Left — sits in reserved padding, never over the cards */}
+          <button
+            onClick={() => scroll('left')}
+            className="hidden md:flex md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} className="text-[#0C0920] md:w-6 md:h-6" />
+          </button>
+
+          {/* Cards Container — md:px reserves space so arrows never overlap */}
+          <div
+            ref={scrollRef}
+            className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 md:px-14"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {treks.map((trek) => (
+              <div
+                key={trek.id}
+                className="w-full md:w-full snap-center rounded-[13px] overflow-hidden shrink-0"
+              >
+                <div className="relative w-full md:h-86.75 overflow-hidden">
+                  <img
+                    src={trek.image}
+                    alt={trek.name}
+                    className="w-full h-[347px] md:h-86.75 object-cover rounded-t-[13px]"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+                <div className="p-3 md:p-4 text-center">
+                  <h3 className="text-base md:text-[24px] font-semibold text-[#5E5858] mb-1">
+                    {trek.name} - {trek.days} Days
+                  </h3>
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="text-[#FACC15]">★</span>
+                    <span className="text-[#5E5858] text-xs md:text-sm font-medium">
+                      {trek.rating} ({trek.reviews} reviews)
+                    </span>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+
+          {/* Arrow Right — sits in reserved padding, never over the cards */}
+          <button
+            onClick={() => scroll('right')}
+            className="hidden md:flex md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} className="text-[#0C0920] md:w-6 md:h-6" />
+          </button>
+        </div>
+
+        <div className="flex justify-center gap-4 mt-6 md:hidden">
+          <button
+            onClick={() => scroll('left')}
+            className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} className="text-[#0C0920]" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} className="text-[#0C0920]" />
+          </button>
         </div>
       </div>
     </section>
