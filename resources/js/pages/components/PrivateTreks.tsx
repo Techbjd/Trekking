@@ -19,7 +19,8 @@ const PrivateTreks: React.FC = () => {
   return (
     <section className="bg-[#F3F4F6]">
       {/* Desktop layout — hidden below lg breakpoint (1024px) */}
-      <div className="hidden lg:block relative w-360 h-158.5 mx-auto">
+      <div className="hidden lg:block relative min-w-[1440px] h-158.5 mx-auto overflow-x-auto">
+        <div className="relative w-[1440px] h-full mx-auto">
         {/* Heading */}
         <h2 className="absolute text-black text-center w-138.75 left-110.75 top-18.75 font-['DM_Sans'] font-bold text-[36px] leading-11.75 m-0">
           {title}
@@ -60,6 +61,7 @@ const PrivateTreks: React.FC = () => {
         <button className="absolute bg-white text-[#3B86CB] rounded-[3px] border border-[#1F9DD9] text-center w-67.25 h-9.5 left-146.25 top-130.75 font-['DM_Sans'] font-medium text-[14px] leading-4.5">
           {ctaText}
         </button>
+        </div>
       </div>
 
       {/* Mobile/Tablet layout — hidden at lg breakpoint and above */}
@@ -83,7 +85,7 @@ const PrivateTreks: React.FC = () => {
         </h3>
 
         {/* Feature cards — CSS grid: 1 col on mobile, 2 cols on tablet */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-[95%] mx-auto justify-center items-center">
           {cards.map((card, i) => (
             <div key={i} className="bg-[#F9FAFB] rounded-[10px] p-5 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
               <card.icon className="w-9 h-9 text-[#1B293A] mb-3" strokeWidth={1.5} />
