@@ -1,7 +1,5 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 import React, { useRef } from 'react';
-
 
 const ExperienceNepal: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -29,7 +27,7 @@ const ExperienceNepal: React.FC = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
-      const scrollAmount = 300;
+      const scrollAmount = scrollRef.current.clientWidth;
       scrollRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -50,31 +48,31 @@ const ExperienceNepal: React.FC = () => {
         </p>
 
         <div className="relative mt-8 md:mt-12">
-          {/* Arrow Left */}
+          {/* Arrow Left — sits in reserved padding, never over the cards */}
           <button
             onClick={() => scroll('left')}
-            className="hidden md:flex md:absolute md:left-[-40px] md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
+            className="hidden md:flex md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
             aria-label="Previous"
           >
             <ChevronLeft size={20} className="text-[#0C0920] md:w-6 md:h-6" />
           </button>
 
-          {/* Cards Container */}
+          {/* Cards Container — md:px reserves space so arrows never overlap */}
           <div
             ref={scrollRef}
-            className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 px-12 md:px-0"
+            className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 md:px-14"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {treks.map((trek) => (
               <div
                 key={trek.id}
-                className="w-[70%] md:w-full snap-center  rounded-[13px]  overflow-hidden shrink-0"
+                className="w-full md:w-full snap-center rounded-[13px] overflow-hidden shrink-0"
               >
-                <div className="relative flex justify-center items-center">
+                <div className="relative w-full md:h-86.75 overflow-hidden">
                   <img
                     src={trek.image}
                     alt={trek.name}
-                    className="md:object-cover rounded-t-[13px] w-full max-w-[547px] h-[347px] md:h-auto  object-fit md:aspect-auto"
+                    className="w-full h-[347px] md:h-86.75 object-cover rounded-t-[13px]"
                     loading="eager"
                     decoding="async"
                   />
@@ -94,15 +92,16 @@ const ExperienceNepal: React.FC = () => {
             ))}
           </div>
 
-          {/* Arrow Right */}
+          {/* Arrow Right — sits in reserved padding, never over the cards */}
           <button
             onClick={() => scroll('right')}
-            className="hidden md:flex md:absolute md:right-[-40px] md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
+            className="hidden md:flex md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
             aria-label="Next"
           >
             <ChevronRight size={20} className="text-[#0C0920] md:w-6 md:h-6" />
           </button>
         </div>
+
         <div className="flex justify-center gap-4 mt-6 md:hidden">
           <button
             onClick={() => scroll('left')}

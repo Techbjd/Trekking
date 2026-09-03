@@ -92,7 +92,7 @@ const PrivateTreks: React.FC = () => {
         </h3>
 
         {/* Feature cards — CSS grid: 1 col on mobile, 2 cols on tablet */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 max-w-[95%] mx-auto justify-center items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 w-[80%] sm:max-w-[70%] mx-auto justify-center items-center">
           {cards.map((card, i) => (
             <div key={i} className="bg-[#F9FAFB] rounded-[10px] p-5 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
               <card.icon className="w-9 h-9 text-[#1B293A] mb-3" strokeWidth={1.5} />
