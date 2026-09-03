@@ -19,8 +19,8 @@ const PrivateTreks: React.FC = () => {
   return (
     <section className="bg-[#F3F4F6]">
       {/* Desktop layout — hidden below lg breakpoint (1024px) */}
-      <div className="hidden lg:block relative min-w-[1440px] h-158.5 mx-auto overflow-x-auto">
-        <div className="relative w-[1440px] h-full mx-auto">
+      <div className="hidden lg:block relative max-w-[1440px] h-158.5 mx-auto overflow-x-auto">
+        <div className="relative w-full h-full mx-auto">
         {/* Heading */}
         <h2 className="absolute text-black text-center w-138.75 left-110.75 top-18.75 font-['DM_Sans'] font-bold text-[36px] leading-11.75 m-0">
           {title}
