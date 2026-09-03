@@ -38,7 +38,7 @@ const ExperienceNepal: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-16 bg-gray-100">
+    <section className="py-12 md:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
         <h2 className="font-['DM_Sans'] font-semibold text-2xl md:text-[36px] leading-tight md:leading-11.75 text-black">
           Experience Nepal
@@ -53,7 +53,7 @@ const ExperienceNepal: React.FC = () => {
           {/* Arrow Left */}
           <button
             onClick={() => scroll('left')}
-            className="absolute left-0 md:-left-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            className="hidden md:flex md:absolute md:left-[-40px] md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
             aria-label="Previous"
           >
             <ChevronLeft size={20} className="text-[#0C0920] md:w-6 md:h-6" />
@@ -62,19 +62,19 @@ const ExperienceNepal: React.FC = () => {
           {/* Cards Container */}
           <div
             ref={scrollRef}
-            className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 px-8 md:px-0"
+            className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 md:pb-0 px-12 md:px-0"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {treks.map((trek) => (
               <div
                 key={trek.id}
-                className="w-[70%] md:w-full snap-center bg-white rounded-[13px] shadow-md overflow-hidden flex-shrink-0"
+                className="w-[70%] md:w-full snap-center  rounded-[13px]  overflow-hidden shrink-0"
               >
-                <div className="relative">
+                <div className="relative flex justify-center items-center">
                   <img
                     src={trek.image}
                     alt={trek.name}
-                    className="w-full aspect-square object-cover rounded-t-[13px]"
+                    className="md:object-cover rounded-t-[13px] w-full max-w-[547px] h-[347px] md:h-auto  object-fit md:aspect-auto"
                     loading="eager"
                     decoding="async"
                   />
@@ -97,10 +97,26 @@ const ExperienceNepal: React.FC = () => {
           {/* Arrow Right */}
           <button
             onClick={() => scroll('right')}
-            className="absolute right-0 md:-right-4 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            className="hidden md:flex md:absolute md:right-[-40px] md:top-1/2 md:-translate-y-1/2 md:z-10 bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors items-center justify-center"
             aria-label="Next"
           >
             <ChevronRight size={20} className="text-[#0C0920] md:w-6 md:h-6" />
+          </button>
+        </div>
+        <div className="flex justify-center gap-4 mt-6 md:hidden">
+          <button
+            onClick={() => scroll('left')}
+            className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} className="text-[#0C0920]" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="bg-white rounded-full shadow-lg p-2 hover:bg-gray-100 transition-colors flex items-center justify-center"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} className="text-[#0C0920]" />
           </button>
         </div>
       </div>

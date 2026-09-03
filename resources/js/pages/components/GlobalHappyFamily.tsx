@@ -28,10 +28,7 @@ function useInView() {
       }
     }, { threshold: 0.15 });
 
-    if (ref.current) {
-observer.observe(ref.current);
-}
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
@@ -46,9 +43,7 @@ const GlobalHappyFamily: React.FC = () => {
   const handleScroll = useCallback(() => {
     const container = scrollRef.current;
 
-    if (!container) {
-return;
-}
+    if (!container) return;
 
     const scrollLeft = container.scrollLeft;
     const containerWidth = container.clientWidth;
@@ -61,19 +56,15 @@ return;
       const child = children[i] as HTMLElement;
       const childCenter = child.offsetLeft + child.offsetWidth / 2;
       const distance = Math.abs(center - childCenter);
-
       if (distance < closestDistance) {
         closestDistance = distance;
         closestIndex = i;
       }
     }
 
-    const realIndex = closestIndex % carouselImages.length;
-    setActiveIndex(realIndex);
+    setActiveIndex(closestIndex % carouselImages.length);
 
-    // Infinite loop: reset scroll to start when reaching end
     const totalScrollWidth = container.scrollWidth - containerWidth;
-
     if (scrollLeft >= totalScrollWidth - 10) {
       container.scrollLeft = 0;
     }
@@ -81,24 +72,20 @@ return;
 
   useEffect(() => {
     const container = scrollRef.current;
-
-    if (!container) {
-return;
-}
-
+    if (!container) return;
     container.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => container.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  // Duplicate images for infinite scroll effect
   const loopedImages = [...carouselImages, ...carouselImages, ...carouselImages];
 
   return (
-    <section ref={ref} className="relative bg-white">
-      {/* ===== DESKTOP — original positioning ===== */}
-      <div className="hidden lg:block relative max-w-360 h-200 mx-auto">
-        <div className="absolute bg-[#E9F3FC] rounded-[14px] max-w-259.5 h-140.75 left-50.5 top-26.25 z-1">
+    <section ref={ref} className="relative bg-white m-auto  my-10 md:py-14 lg:py-0">
+      {/* ===== SINGLE CONTAINER ===== */}
+      <div className="relative bg-[#E9F3FC] rounded-[14px] max-w-[92%] lg:max-w-259.5 mx-auto my-3 lg:my-0 lg:mt-26.25 overflow-hidden ">
+
+        {/* Desktop images - absolute */}
+        <div className="hidden lg:block relative w-full h-140.75">
           {desktopImages.map((img, i) => (
             <div
               key={i}
@@ -106,36 +93,10 @@ return;
               style={{ backgroundImage: `url('${img.src}')` }}
             />
           ))}
-
-          <h2 className="absolute text-black w-76 h-23.25 left-140 top-16.5 font-['DM_Sans'] font-bold text-[36px] leading-11.75 m-0">
-            A Global Happy Family
-          </h2>
-
-          <p className="absolute text-[#666666] w-74.25 left-140 top-42 font-['DM_Sans'] font-medium text-[14px] leading-4.5 m-0">
-            DWT believes that the world is a global family, and we treat each other accordingly. We believe in giving back more to society than taking. After all, we rise by lifting others.
-          </p>
-
-          <button className="absolute bg-white text-[#3B86CB] rounded-[3px] border border-[#1F9DD9] text-center w-50.5 h-10.25 left-140 top-66 font-['DM_Sans'] font-medium text-[14px] leading-4.5">
-            Learn about our CSR
-          </button>
-
-          <div className="absolute w-259.5 h-57.75 left-0 bottom-0 z-0">
-            <img src="/mountain-bg.png" alt="Mountains" className="w-full h-full object-fit object-bottom opacity-50" loading="lazy" />
-          </div>
         </div>
-      </div>
 
-      {/* ===== MOBILE / TABLET — infinite horizontal carousel ===== */}
-      <div className="lg:hidden relative bg-[#E9F3FC] rounded-[14px] max-w-[92%] my-3 mx-auto overflow-hidden">
-        <img
-          src="/mountain-bg.png"
-          loading="lazy"
-          className="absolute bottom-0 left-0 w-full h-[80px] md:h-[120px] object-cover object-bottom opacity-40 rounded-b-[14px]"
-          alt="Mountains"
-        />
-
-        <div className="relative z-10 px-4 py-8 md:px-6 md:py-10">
-          {/* Infinite scrollable carousel */}
+        {/* Mobile carousel images */}
+        <div className="lg:hidden relative z-10 px-4 py-8 md:px-6 md:py-10">
           <div
             ref={scrollRef}
             className="flex gap-4 overflow-x-auto scroll-hidden snap-x snap-mandatory pb-4"
@@ -145,6 +106,7 @@ return;
               const isCenter = activeIndex === (i % carouselImages.length);
 
               return (
+
                 <div key={i} className="shrink-0 snap-center flex items-center justify-center">
                   <img
                     src={img}
@@ -160,7 +122,6 @@ return;
               );
             })}
           </div>
-
           {/* Scroll indicators */}
           <div className="flex justify-center gap-2 mt-4">
             {carouselImages.map((_, i) => (
@@ -172,19 +133,39 @@ return;
               />
             ))}
           </div>
+        </div>
 
-          {/* Text */}
-          <div className={`text-center mt-6 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-black font-['DM_Sans'] font-bold text-xl md:text-2xl leading-tight mb-3">
-              A Global Happy Family
-            </h2>
-            <p className="text-[#666666] font-['DM_Sans'] font-medium text-sm md:text-base leading-relaxed mb-4">
-              DWT believes that the world is a global family, and we treat each other accordingly. We believe in giving back more to society than taking. After all, we rise by lifting others.
-            </p>
-            <button className="bg-white text-[#3B86CB] rounded-[3px] border border-[#1F9DD9] px-6 py-2.5 font-['DM_Sans'] font-medium text-sm hover:bg-[#E9F3FC] transition-colors duration-300">
-              Learn about our CSR
-            </button>
-          </div>
+        {/* Title - shared */}
+        <h2 className={`font-['DM_Sans'] font-bold text-black m-0 ${
+          'text-center text-xl md:text-2xl leading-tight mb-3 px-4 lg:absolute lg:text-[36px] lg:leading-11.75 lg:text-left lg:w-76 lg:h-23.25 lg:left-140 lg:top-16.5 lg:mb-0'
+        }`}>
+          A Global Happy Family
+        </h2>
+
+        {/* Description - shared */}
+        <p className={`font-['DM_Sans'] font-medium text-[#666666] m-0 ${
+          'text-center text-sm md:text-base leading-relaxed mb-4 px-4 lg:absolute lg:text-[14px] lg:leading-4.5 lg:text-left lg:w-74.25 lg:left-140 lg:top-42 lg:mb-0'
+        }`}>
+          DWT believes that the world is a global family, and we treat each other accordingly. We believe in giving back more to society than taking. After all, we rise by lifting others.
+        </p>
+
+        {/* Button - shared */}
+        <div className={`px-4 pb-6 lg:pb-0 ${'lg:absolute lg:left-140 lg:top-66'}`}>
+          <button className={`bg-white text-[#3B86CB] rounded-[3px] border border-[#1F9DD9] font-['DM_Sans'] font-medium transition-colors duration-300 ${
+            'w-full py-2.5 text-sm hover:bg-[#E9F3FC] lg:text-center lg:w-50.5 lg:h-10.25 lg:text-[14px] lg:hover:bg-white'
+          }`}>
+            Learn about our CSR
+          </button>
+        </div>
+
+        {/* Mountain background - shared */}
+        <div className="absolute w-full bottom-0 left-0 z-0">
+          <img
+            src="/mountain-bg.png"
+            alt="Mountains"
+            className="w-full  md:object-fill  object-bottom opacity-30 lg:opacity-50 h-1/2   md:h-57.75 rounded-b-[14px]"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>

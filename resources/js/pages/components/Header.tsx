@@ -6,10 +6,12 @@ const Header: React.FC = () => {
 
   const navItems = [
     { label: 'Nepal Trips', highlight: true },
+    { label: '|', highlight: true },
     { label: 'Travel Info', highlight: false },
     { label: 'Company', highlight: false },
     { label: 'Blog', highlight: false },
     { label: 'Contact Us', highlight: false },
+    { label: '|', highlight: true },
     { label: 'Top 5 Treks', highlight: true },
   ];
 
@@ -103,7 +105,7 @@ const Header: React.FC = () => {
           <div className="absolute top-16 right-4 w-64 bg-white border border-gray-200 rounded-lg shadow-xl">
             {/* Pointer arrow */}
             <div className="absolute -top-2 right-6 w-4 h-4 bg-white border-t border-l border-gray-200 transform rotate-45" />
-            
+
             <div className="p-3 relative">
               {/* Nav Items */}
               <div className="space-y-1 mb-3">

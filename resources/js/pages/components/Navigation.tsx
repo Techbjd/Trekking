@@ -17,7 +17,7 @@ const Navigation: React.FC = () => {
     <nav className="w-full bg-[#2D0B51]">
       <div className="max-w-360 h-18.75 mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo - Always visible */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <img
             src="/LOGO.png"
             alt="Logo"

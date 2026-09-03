@@ -53,8 +53,8 @@ const features = [
 
 const YourTrustedPartner: React.FC = () => {
   return (
-    <section className="bg-[#BADEF8] w-full py-10 px-4 md:py-14 md:px-8 xl:py-0 xl:px-0 xl:min-h-150">
-      <div className="container mx-auto flex flex-col xl:flex-row items-center xl:justify-between xl:min-h-150 gap-10 xl:gap-0">
+    <section className="bg-[#BADEF8] w-full  xl:py-0 xl:px-0 xl:min-h-150">
+      <div className="container mx-auto flex py-10 px-4 md:py-14 md:px-8 flex-col xl:flex-row items-center xl:justify-between xl:min-h-150 gap-10 xl:gap-0">
         {/* Left Side */}
         <div className="w-full xl:w-1/2 flex flex-col items-center text-center xl:items-start xl:text-left pt-0 xl:pt-7.5 pl-0 xl:pl-39.5">
           <h2 className="font-['DM_Sans'] font-bold text-black text-2xl leading-9 md:text-[40px] md:leading-13 w-full xl:w-108 mb-4 m-0">
@@ -86,8 +86,8 @@ const YourTrustedPartner: React.FC = () => {
       </div>
 
       {/* Bottom Image */}
-      <div className="w-full h-64 md:h-80 xl:h-98.5 mt-10 rounded-lg overflow-hidden">
-        <img src="/yourtrusted_partner.png" alt="Full width image" className="w-full h-full object-contain xl:object-cover" />
+      <div className="w-full h-64 md:h-80 xl:h-98.5 mt-10 md: rounded-lg overflow-hidden">
+        <img src="/yourtrusted_partner.png" alt="Full width image" className="w-full h-full object-fit xl:object-cover" />
       </div>
     </section>
   );
