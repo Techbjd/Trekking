@@ -53,12 +53,12 @@ const features = [
 
 const YourTrustedPartner: React.FC = () => {
   return (
-    <section className="bg-[#BADEF8] w-full min-h-150">
-      <div className="container mx-auto flex items-center justify-between min-h-150">
+    <section className="bg-[#BADEF8] w-full py-10 px-4 md:py-14 md:px-8 xl:py-0 xl:px-0 xl:min-h-150">
+      <div className="container mx-auto flex flex-col xl:flex-row items-center xl:justify-between xl:min-h-150 gap-10 xl:gap-0">
         {/* Left Side */}
-        <div className="w-1/2 flex flex-col pt-7.5 pl-39.5">
-          <h2 className="font-['DM_Sans'] font-bold text-black text-[40px] leading-13 w-108 mb-4 m-0">
-            Your Trusted Partner <br /> for Himalayan Adventures
+        <div className="w-full xl:w-1/2 flex flex-col items-center text-center xl:items-start xl:text-left pt-0 xl:pt-7.5 pl-0 xl:pl-39.5">
+          <h2 className="font-['DM_Sans'] font-bold text-black text-2xl leading-9 md:text-[40px] md:leading-13 w-full xl:w-108 mb-4 m-0">
+            Your Trusted Partner <br className="hidden md:block" /> for Himalayan Adventures
           </h2>
           <p className="font-['DM_Sans'] font-normal text-[16px] leading-5.25 text-[#666] max-w-[466px] mb-8 m-0">
             We're a team of passionate adventurers, certified guides, and local experts dedicated to giving you the safest, most enriching journeys through the Nepali Himalayas and beyond.
@@ -70,7 +70,7 @@ const YourTrustedPartner: React.FC = () => {
         </div>
 
         {/* Right Side - Features Grid */}
-        <div className="w-1/2 grid grid-cols-2 gap-x-12 gap-y-10 pr-25">
+        <div className="w-full xl:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 md:gap-x-12 md:gap-y-10 lg:pl-25 xl:pr-25 xl:pl-4">
           {features.map((f, i) => (
             <div key={i} className="flex items-center gap-4">
               <div className="rounded-full shrink-0 flex items-center justify-center w-9.25 h-9.25" style={{ background: f.color }}>
@@ -78,7 +78,7 @@ const YourTrustedPartner: React.FC = () => {
               </div>
               <div className="text-left">
                 <h3 className="font-['DM_Sans'] font-bold text-black text-[18px] leading-5.75 mb-1 m-0">{f.title}</h3>
-                <p className="font-['DM_Sans'] font-medium text-[14px] leading-4.5 text-[#666] w-60.75 m-0">{f.description}</p>
+                <p className="font-['DM_Sans'] font-medium text-[14px] leading-4.5 text-[#666] w-full xl:w-60.75 m-0">{f.description}</p>
               </div>
             </div>
           ))}
@@ -86,8 +86,8 @@ const YourTrustedPartner: React.FC = () => {
       </div>
 
       {/* Bottom Image */}
-      <div className="w-full h-98.5 mt-10 rounded-lg overflow-hidden">
-        <img src="/yourtrusted_partner.png" alt="Full width image" className="w-full h-full object-cover" />
+      <div className="w-full h-64 md:h-80 xl:h-98.5 mt-10 rounded-lg overflow-hidden">
+        <img src="/yourtrusted_partner.png" alt="Full width image" className="w-full h-full object-contain xl:object-cover" />
       </div>
     </section>
   );
